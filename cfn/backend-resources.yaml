@@ -5,12 +5,12 @@ Parameters:
   S3BucketName:
     Type: String
     Description: The name of the S3 bucket to be created for storing Terraform state files.
-    Default: gitops-tf-backend
+    Default: gitops2024-tf-backend
 
   DynamoDBTableName:
     Type: String
     Description: The name of the DynamoDB table to be created for Terraform state locking.
-    Default: GitopsTerraformLocks
+    Default: Gitops2024TerraformLocks
 
 Resources:
   TerraformBackendBucket:
