@@ -19,6 +19,13 @@ jobs:
         shell: bash
 
     steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: us-east-1
+        role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+        role-session-name: MySessionName
+
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
