@@ -45,6 +45,6 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
 
-     # Apply the configuration
+    # Apply the configuration
     - name: Terraform Destroy
-      run: terraform destroy -input=false auto-approve   
+      run: terraform destroy -input=false -auto-approve   
