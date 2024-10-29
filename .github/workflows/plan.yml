@@ -1,4 +1,4 @@
-name: 'plan'
+name: 'Terraform Plan'
 
 on:
   push:
@@ -49,5 +49,5 @@ jobs:
       id: plan
       run: |
         terraform plan -out=plan.tfplan
-        terraform show -json plan.tfplan -> /tmp/plan.json
+        terraform show -json plan.tfplan > /tmp/plan.json
         cat /tmp/plan.json
