@@ -1,0 +1,79 @@
+{
+    "format_version": "1.2",
+    "terraform_version": "1.9.8",
+    "resource_changes": [
+        {
+            "address": "aws_instance.grafana_server",
+            "mode": "managed",
+            "type": "aws_instance",
+            "name": "grafana_server",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "instance_type": "t3.micro"
+                }
+            }
+        },
+        {
+            "address": "aws_internet_gateway.gitops_igw",
+            "mode": "managed",
+            "type": "aws_internet_gateway",
+            "name": "gitops_igw",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "tags": {
+                        "Name": "gitops-igw"
+                    },
+                    "tags_all": {
+                        "Name": "gitops-igw"
+                    },
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "id": true,
+                    "owner_id": true,
+                    "tags": {},
+                    "tags_all": {},
+                    "vpc_id": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": {},
+                    "tags_all": {}
+                }
+            }
+        }
+    ],
+    "checks": [
+        {
+            "address": {
+                "kind": "check",
+                "name": "grafana_health_check",
+                "to_display": "check.grafana_health_check"
+            },
+            "status": "unknown",
+            "instances": [
+                {
+                    "address": {
+                        "to_display": "check.grafana_health_check"
+                    },
+                    "status": "unknown"
+                }
+            ]
+        }
+    ],
+    "timestamp": "2024-10-29T19:23:35Z",
+    "applyable": true,
+    "complete": true,
+    "errored": false
+}
