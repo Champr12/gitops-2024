@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Running Terraform format check..."
+
+# Change to terraform directory
+cd terraform 2>/dev/null || {
+    echo "❌ No terraform directory found"
+    exit 1
+}
+
+# Run format check and store the result
+terraform fmt -check
+RESULT=$?
+
+if [ $RESULT -eq 0 ]; then
+    echo "✅ Terraform formatting is correct"
+    exit 0
+else
+    echo "❌ Terraform files need formatting"
+    echo "💡 Run 'cd terraform && terraform fmt' to fix formatting"
+    exit 1
+fi
