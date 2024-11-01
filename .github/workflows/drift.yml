@@ -46,9 +46,15 @@ jobs:
       id: plan
       run: terraform plan -detailed-exitcode
       continue-on-error: true
-      
-    - name: Terraform Plan Status
-      if: steps.plan.outcome == 'failure'
+    
+    - name: Check for Drift
+      if: steps.plan.outputs.exitcode == '2'
       run: |
-        echo "Drift detected on this Terraform workspace"
+        echo "::error::Drift detected in Terraform managed infrastructure!"
+        echo "Changes detected in the following resources:"
+        terraform show -json tfplan | jq -r '.resource_changes[] | select(.change.actions[] != "no-op") | .address'
         exit 1
+
+    - name: No Drift Detected
+      if: steps.plan.outputs.exitcode == '0'
+      run: echo "No infrastructure drift detected"
