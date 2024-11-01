@@ -50,9 +50,7 @@ jobs:
     - name: Check for Drift
       if: steps.plan.outputs.exitcode == '2'
       run: |
-        echo "::error::Drift detected in Terraform managed infrastructure!"
-        echo "Changes detected in the following resources:"
-        terraform show -json tfplan | jq -r '.resource_changes[] | select(.change.actions[] != "no-op") | .address'
+        echo "::error::Drift detected in Terraform managed infrastructure! Refer to output by terraform plan above."
         exit 1
 
     - name: No Drift Detected
