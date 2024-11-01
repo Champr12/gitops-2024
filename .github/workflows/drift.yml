@@ -44,7 +44,9 @@ jobs:
     # Generates an execution plan for Terrafor and outputs an exit code 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -detailed-exitcode
+      run: |
+        terraform plan -detailed-exitcode 2>&1 | tee plan.txt
+        echo "exitcode=${?}" >> $GITHUB_OUTPUT
       continue-on-error: true
     
     # Check for Drift and exit the workflow accordingly
