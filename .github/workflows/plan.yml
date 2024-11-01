@@ -55,11 +55,13 @@ jobs:
         terraform show -json plan.tfplan > /tmp/plan.json
         cat /tmp/plan.json
     
+    # Set up the OPA Action
     - name: Setup OPA
       uses: open-policy-agent/setup-opa@v2
       with:
         version: latest
 
+    # Run OPA against the generated JSON file and post comment to GitHub
     - name: Run OPA Tests
       run: |
         opaout=$(opa eval --data ../policies/instance-policy.rego --input /tmp/plan.json "data.terraform.deny" | jq -r '.result[].expressions[].value[]')
