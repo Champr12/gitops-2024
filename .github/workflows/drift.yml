@@ -47,6 +47,7 @@ jobs:
       run: terraform plan -detailed-exitcode
       continue-on-error: true
     
+    # Check for Drift and exit the workflow accordingly
     - name: Check for Drift
       if: steps.plan.outputs.exitcode == '2'
       run: |
