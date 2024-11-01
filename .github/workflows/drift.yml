@@ -42,20 +42,12 @@ jobs:
       run: terraform fmt -check
 
     # Generates an execution plan for Terrafor and outputs an exit code 
-    - name: Terraform Plan
-      id: plan
-      run: |
-        terraform plan -detailed-exitcode 2>&1 | tee plan.txt
-        echo "exitcode=${?}" >> $GITHUB_OUTPUT
-      continue-on-error: true
-    
-    # Check for Drift and exit the workflow accordingly
     - name: Check for Drift
-      if: steps.plan.outputs.exitcode == '2'
+      id: drift
       run: |
-        echo "::error::Drift detected in Terraform managed infrastructure! Refer to output by terraform plan above."
-        exit 1
-
-    - name: No Drift Detected
-      if: steps.plan.outputs.exitcode == '0'
-      run: echo "No infrastructure drift detected"
+        if terraform plan -detailed-exitcode; then
+          echo "No drift detected"
+        else
+          echo "Drift detected!"
+          exit 1
+        fi
