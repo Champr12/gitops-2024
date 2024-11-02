@@ -44,14 +44,15 @@ jobs:
     # Generates an execution plan for Terrafor and outputs an exit code 
     - name: Terraform Plan
       run: |
-        # Run plan and save output
-        terraform plan > plan_output.txt
+        # Run plan and capture all output (including stderr)
+        terraform plan 2>&1 | tee plan_output.txt
         
-        # Show the plan output
-        cat plan_output.txt
+        # Debug: show the content with line numbers
+        echo "=== Debug: plan output with line numbers ==="
+        nl plan_output.txt
         
-        # Simple check for "No changes" message
-        if grep -q "No changes. Your infrastructure matches the configuration" plan_output.txt; then
+        # Check for no changes using a more flexible pattern
+        if grep -q "No changes\." plan_output.txt; then
           echo "No drift detected"
           exit 0
         else
