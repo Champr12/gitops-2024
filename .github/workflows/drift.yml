@@ -1,6 +1,8 @@
 name: 'Drift Detection'
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: read
