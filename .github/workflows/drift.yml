@@ -51,15 +51,12 @@ jobs:
         # Show the plan output
         cat plan_output.txt
         
-        # Check if there's a plan with non-zero changes
-        if ! grep -q "Plan: 0 to add, 0 to change, 0 to destroy" plan_output.txt || \
-           [ $EXITCODE -eq 2 ]; then
-          echo "::error::Drift detected! Changes found in plan"
-          exit 1
-        elif [ $EXITCODE -eq 0 ]; then
-          echo "No changes detected"
+        # Check for the "No changes" message that appears when there's no drift
+        if grep -q "No changes. Your infrastructure matches the configuration" plan_output.txt && \
+           [ $EXITCODE -eq 0 ]; then
+          echo "No drift detected"
           exit 0
         else
-          echo "::error::Error running plan"
+          echo "::error::Drift detected! Changes found in plan"
           exit 1
         fi
