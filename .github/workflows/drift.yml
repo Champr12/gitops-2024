@@ -43,16 +43,16 @@ jobs:
 
     # Generates an execution plan for Terrafor and outputs an exit code 
     - name: Terraform Plan
-      id: tf-plan
       run: |
-        export exitcode=0
-        terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
-        
-        echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
-        
-        if [ $exitcode -eq 1 ]; then
-          echo Terraform Plan Failed!
+        terraform plan -detailed-exitcode
+        EXITCODE=$?
+        if [ $EXITCODE -eq 2 ]; then
+          echo "Changes detected in the plan"
           exit 1
-        else 
+        elif [ $EXITCODE -eq 0 ]; then
+          echo "No changes detected"
           exit 0
+        else
+          echo "Error running plan"
+          exit 1
         fi
