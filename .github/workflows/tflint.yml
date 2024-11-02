@@ -1,4 +1,5 @@
-name: Lint
+name: TFLint
+
 on:
   push:
     branches: [ main ]
