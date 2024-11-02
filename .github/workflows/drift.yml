@@ -47,11 +47,7 @@ jobs:
         # Run plan and capture all output (including stderr)
         terraform plan 2>&1 | tee plan_output.txt
         
-        # Debug: show the content with line numbers
-        echo "=== Debug: plan output with line numbers ==="
-        nl plan_output.txt
-        
-        # Check for no changes using a more flexible pattern
+        # Check for no changes
         if grep -q "No changes\." plan_output.txt; then
           echo "No drift detected"
           exit 0
