@@ -46,6 +46,10 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
+    
+    # Do a check that verify whether a configuration is syntactically valid and internally consistent
+    - name: Terraform Validate
+      run: terraform validate     
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
