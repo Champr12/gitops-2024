@@ -25,7 +25,7 @@ TFLint Check (tflint.yml): This workflow will use TFLint to check and identify p
 
 Infracost Check (infracost.yml): This workflow calculates and assesses the cost of infrastructure changes before applying them. Running on pull requests, it uses Infracost to evaluate if new resources will exceed set budget policies, flagging any high-cost additions and promoting cost-efficient practices.
 
-OPA Policy Check (plan.yml): This policy-checking workflow enforces compliance by validating the proposed Terraform resources against predefined Open Policy Agent (OPA) policies. Running alongside the plan step, it ensures infrastructure meets security and operational standards, blocking non-compliant configurations.
+OPA Policy Check (plan_opa.yml): This policy-checking workflow enforces compliance by validating the proposed Terraform resources against predefined Open Policy Agent (OPA) policies. Running alongside the plan step, it ensures infrastructure meets security and operational standards, blocking non-compliant configurations.
 
 Terraform Apply (apply.yml): This workflow is responsible for applying changes after all checks pass. It runs on the main branch, deploying resources to AWS when merged, ensuring only validated, cost-approved, and compliant configurations reach production.
 
