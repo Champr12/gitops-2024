@@ -25,11 +25,13 @@ TFLint Check (tflint.yml): This workflow will use TFLint to check and identify p
 
 Infracost Check (infracost.yml): This workflow calculates and assesses the cost of infrastructure changes before applying them. Running on pull requests, it uses Infracost to evaluate if new resources will exceed set budget policies, flagging any high-cost additions and promoting cost-efficient practices.
 
-OPA Policy Check (plan.yml): This policy-checking workflow enforces compliance by validating the proposed Terraform resources against predefined Open Policy Agent (OPA) policies. Running alongside the plan step, it ensures infrastructure meets security and operational standards, blocking non-compliant configurations.
+OPA Policy Check (plan_opa.yml): This policy-checking workflow enforces compliance by validating the proposed Terraform resources against predefined Open Policy Agent (OPA) policies. Running alongside the plan step, it ensures infrastructure meets security and operational standards, blocking non-compliant configurations.
 
 Terraform Apply (apply.yml): This workflow is responsible for applying changes after all checks pass. It runs on the main branch, deploying resources to AWS when merged, ensuring only validated, cost-approved, and compliant configurations reach production.
 
-Terraform Destroy (destory.yml): This workflow destroys any existing infrastrcture according to th
+Terraform Destroy (destory.yml): This workflow destroys any existing infrastructure created by the apply.yml workflow.
+
+Terraform Drift Detection (drift.yml): This workflow is ran on a schedule and checks for any infrastructure drift between the actual infrastructure and the Terraform state file (terraform.tfstate).
 
 ## GitHub Actions: Actions
 
@@ -67,4 +69,4 @@ terraform-linters/setup-tflint@v4: Installs a TFLint executable.
 
 ## Merging Strategy
 
-The merging strategy that we will use is "Apply before merge". With the Apply Before Merge strategy, infrastructure changes are first tested and applied in a pull request (PR) environment, where terraform apply is ran manually before merging into the main branch. This way, any issues are caught early in the PR, keeping the main branch stable and error-free. After a successful apply and any additional checks, the PR is merged, with main reflecting only changes that have been successfully validated. The Apply Before Merge approach for Terraform allows testing changes directly in the environment before merging, addressing issues early and reducing "hotfix" PRs due to apply failures. This strategy avoids delay in promotion pipelines, enabling faster iteration.s in promotion pipelines, enabling faster iteration.
+The merging strategy that we will use is <strong>Apply Before Merge</strong>. With the Apply Before Merge strategy, infrastructure changes are first tested and applied in a pull request (PR) environment, where terraform apply is ran manually before merging into the main branch. This way, any issues are caught early in the PR, keeping the main branch stable and error-free. After a successful apply, the PR is merged, with main reflecting only changes that have been successfully validated. The Apply Before Merge approach for Terraform allows testing changes directly in the environment before merging, addressing issues early and reducing "hotfix" PRs due to apply failures.
