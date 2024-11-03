@@ -32,7 +32,7 @@ OPA Policy Check (plan_opa.yml): This policy-checking workflow enforces complian
 
 Terraform Apply (apply.yml): This workflow is responsible for applying changes after all checks pass. It runs on the main branch, deploying resources to AWS when merged, ensuring only validated, cost-approved, and compliant configurations reach production.
 
-Terraform Destroy (destory.yml): This workflow destroys any existing infrastructure created by the apply.yml workflow.
+Terraform Destroy (destroy.yml): This workflow destroys any existing infrastructure created by the apply.yml workflow.
 
 Terraform Drift Detection (drift.yml): This workflow is ran on a schedule and checks for any infrastructure drift between the actual infrastructure and the Terraform state file (terraform.tfstate).
 
