@@ -16,6 +16,7 @@ This project uses:
 - OPA for cofiguration policy enforcement.
 
 ## Architecture Diagram
+![image](https://github.com/user-attachments/assets/e8a4a869-5c0d-492f-9c52-028febf8362b)
 
 ## GitHub Actions: Workflows
 Terraform (terraform.yml): This workflow initializes Terraform and creates an execution plan to preview infrastructure changes. It runs on feature branch changes and generates a terraform plan output, showing proposed resource modifications without applying them. This step ensures code correctness and previews costs or resource alterations.
