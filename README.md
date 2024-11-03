@@ -40,7 +40,7 @@ The following Actions are used in the above Workflows:
 actions/checkout: Checks out the repository code, allowing workflows to access it.
 [Documentation](https://github.com/actions/checkout)
 
-actions/cache@v4:This action allows caching dependencies and build outputs to improve workflow execution time. 
+actions/cache@v4: This action allows caching dependencies and build outputs to improve workflow execution time. 
 [Documentation](https://github.com/actions/cache)
 
 hashicorp/setup-terraform: Sets up the Terraform CLI in GitHub Actions for Terraform commands.
@@ -55,7 +55,7 @@ opa-action/action: Runs OPA policies to validate Terraform configurations, enfor
 aws-actions/configure-aws-credentials@v4: This action implements the AWS credential resolution chain and exports session environment variables for other Actions to use. 
 [Documentation](https://github.com/aws-actions/configure-aws-credentials)
 
-terraform-linters/setup-tflint@v4: Installs a TFLint executable. 
+terraform-linters/setup-tflint@v4: Installs the TFLint executable. 
 [Documentation](https://github.com/terraform-linters/setup-tflint)
 
 ## Contribution Instructions
