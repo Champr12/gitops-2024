@@ -19,6 +19,9 @@ This project uses:
 ![image](https://github.com/user-attachments/assets/e8a4a869-5c0d-492f-9c52-028febf8362b)
 
 ## GitHub Actions: Workflows
+
+The following GitHub Actions workflows are used for the deployment:
+
 Terraform (terraform.yml): This workflow initializes Terraform and creates an execution plan to preview infrastructure changes. It runs on feature branch changes and generates a terraform plan output, showing proposed resource modifications without applying them. This step ensures code correctness and previews costs or resource alterations.
 
 TFLint Check (tflint.yml): This workflow will use TFLint to check and identify potential issues, errors, and violations of best practices. It helps maintain code quality, consistency, and reliability in Terraform.
