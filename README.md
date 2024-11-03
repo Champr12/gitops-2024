@@ -63,5 +63,3 @@ terraform-linters/setup-tflint@v4 (https://github.com/terraform-linters/setup-tf
 ## Merging Strategy
 
 The merging strategy that we will use is "Apply before merge". With the Apply Before Merge strategy, infrastructure changes are first tested and applied in a pull request (PR) environment, where terraform apply is ran manually before merging into the main branch. This way, any issues are caught early in the PR, keeping the main branch stable and error-free. After a successful apply and any additional checks, the PR is merged, with main reflecting only changes that have been successfully validated. The Apply Before Merge approach for Terraform allows testing changes directly in the environment before merging, addressing issues early and reducing "hotfix" PRs due to apply failures. This strategy avoids delay in promotion pipelines, enabling faster iteration.s in promotion pipelines, enabling faster iteration. 
-
-
