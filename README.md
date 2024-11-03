@@ -22,13 +22,11 @@ This project uses:
 
 The following GitHub Actions workflows are used for the deployment:
 
-Terraform (terraform.yml): This workflow initializes Terraform and creates an execution plan to preview infrastructure changes. It runs on feature branch changes and generates a terraform plan output, showing proposed resource modifications without applying them. This step ensures code correctness and previews costs or resource alterations.
+OPA Policy Check (plan_opa.yml): This policy-checking workflow enforces compliance by validating the proposed Terraform resources against predefined Open Policy Agent (OPA) policies. Running alongside the plan step, it ensures infrastructure meets security and operational standards, blocking non-compliant configurations.
 
 TFLint Check (tflint.yml): This workflow will use TFLint to check and identify potential issues, errors, and violations of best practices. It helps maintain code quality, consistency, and reliability in Terraform.
 
 Infracost Check (infracost.yml): This workflow calculates and assesses the cost of infrastructure changes before applying them. Running on pull requests, it uses Infracost to evaluate if new resources will exceed set budget policies, flagging any high-cost additions and promoting cost-efficient practices.
-
-OPA Policy Check (plan_opa.yml): This policy-checking workflow enforces compliance by validating the proposed Terraform resources against predefined Open Policy Agent (OPA) policies. Running alongside the plan step, it ensures infrastructure meets security and operational standards, blocking non-compliant configurations.
 
 Terraform Apply (apply.yml): This workflow is responsible for applying changes after all checks pass. It runs on the main branch, deploying resources to AWS when merged, ensuring only validated, cost-approved, and compliant configurations reach production.
 
